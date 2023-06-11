@@ -9,7 +9,8 @@
 
 #define URANDOM_DEVICE "/dev/urandom"
 
-#define COUNT_OF(x) ((sizeof(x)/sizeof(0[x])) / ((size_t)(!(sizeof(x) % sizeof(0[x])))))
+#define COUNT_OF(x)                                                            \
+    ((sizeof(x) / sizeof(0 [x])) / ((size_t)(!(sizeof(x) % sizeof(0 [x])))))
 
 static FILE *urandom;
 
@@ -21,12 +22,12 @@ struct Bet {
 
 // Even and dozen can be deduced easily, not need to hardcode them.
 struct Number {
-	int value;
-	char color;
-	int column; // which column number belong
+    int value;
+    char color;
+    int column; // which column number belong
 };
 
-extern int zero_game[7]; 
+extern int zero_game[7];
 extern int zero_neighbors[10];
 extern int orphans[8];
 extern int third_of_wheel[12];
