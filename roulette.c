@@ -70,7 +70,7 @@ void rand_close(void) {
 }
 
 int draw(void){
-    int c;
+    int c = 0;
 
     do {
         c = fgetc(urandom);
@@ -93,11 +93,16 @@ float calculate_payout(int number_drawn, struct Bet bets[], size_t num_bets) {
     for (i = 0; i < num_bets; i++) {
         struct Bet bet = bets[i];
 
+		// Handle the zero, where you only win when betting directly on it
+		// hence exit the loop in that case.
         if (strcmp(bet.type, "number") == 0) {
             if (bet.value == number_drawn) {
-                payout += 36.0 * bet.amount;
+                return 36.0 * bet.amount; // You only win on zero when you explicitly bet on it
+										// since zero is considered neither ood or even nor black or red
             }
-        } else if (strcmp(bet.type, "color") == 0) {
+		}
+
+        if (strcmp(bet.type, "color") == 0) {
             if ((is_black(&number) && bet.value == 0) || (is_red(&number) && bet.value == 1)) {
                 payout += 2.0 * bet.amount;
             }
@@ -156,10 +161,6 @@ void play(float initial_balance, struct Bet bets[], size_t num_bets) {
 bool is_even(struct Number *n) {
 	if (n == NULL) {
 		printf("fatal pointer is nil");
-		return false;
-	}
-
-	if (n->value == 0) {
 		return false;
 	}
 

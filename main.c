@@ -20,10 +20,10 @@ int main(void) {
 //		{"even", 0, 2.0},    // Bet on even numbers with $2
 //	};
 
-//	struct Bet bets[] = {
-//		{"number", 0, 1.0},  // Bet on number 14 with $1
-//		{"even", 0, 8.0},    // Bet on even numbers with $2
-//	};
+	// struct Bet bets[] = {
+	// 	{"number", 0, 1.0},  // Bet on number 14 with $1
+	// 	{"even", 0, 2.0},    // Bet on even numbers with $2
+	// };
 //
 	struct Bet bets[] = {
 		{"number", 0, 1.0},
