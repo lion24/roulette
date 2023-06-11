@@ -79,9 +79,9 @@ int draw(void){
             exit(EXIT_FAILURE);
         }
     }
-    while (c >= (UCHAR_MAX + 1) / MAX * MAX);
+	while(c > MAX-MIN);
 
-    return (c % ((MAX - MIN) + 1) + MIN);
+	return c + MIN;
 }
 
 float calculate_payout(int number_drawn, struct Bet bets[], size_t num_bets) {
@@ -194,7 +194,7 @@ bool is_black(struct Number *n) {
 		return false;
 	}
 
-	return n->color == 'B' ? true : false;
+	return n->color == 'B';
 }
 
 // check if the number is red
@@ -204,7 +204,7 @@ bool is_red(struct Number *n) {
 		return false;
 	}
 
-	return n->color == 'R' ? true : false;
+	return n->color == 'R';
 }
 
 // Return the column the number belongs too
