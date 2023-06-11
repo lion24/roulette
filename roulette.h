@@ -2,6 +2,7 @@
 #define ROULETTE_H_
 
 #include <stdbool.h>
+#include <stdio.h>
 #include <unistd.h>
 
 #define MIN 0
