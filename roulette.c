@@ -126,11 +126,14 @@ float calculate_payout(int number_drawn, struct Bet bets[], size_t num_bets) {
 // game-loop, play until amount < 0
 void play(float initial_balance, struct Bet bets[], size_t num_bets) {
 	int number_drawn = 0;
+	float payout = 0.0, bet_size = 0;
 	float amount = initial_balance;
 
 	while (amount > 0.0) {
+
+		payout = 0;
 		// Deduce bet size from the amount
-		float bet_size = 0.0;
+		bet_size = 0.0;
 
 		for (size_t i = 0; i < num_bets; i++) {
         		struct Bet bet = bets[i];
@@ -142,7 +145,7 @@ void play(float initial_balance, struct Bet bets[], size_t num_bets) {
 		printf("result: %d\n", number_drawn);
 
 		// Calcute the payout in case of win
-		float payout = calculate_payout(number_drawn, bets, num_bets);
+		payout = calculate_payout(number_drawn, bets, num_bets);
 		amount += payout - bet_size;
     		printf("Bet size: %.2f\n", bet_size);
     		printf("Payout: %.2f\n", payout);
